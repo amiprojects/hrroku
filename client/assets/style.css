@@ -440,7 +440,6 @@ body{
 	/*display:none;*/
 }
 #createNewClient{
-	display:none;
 	width: 100%;
     height: auto;
     float: left;
@@ -537,11 +536,10 @@ body{
 	margin-left: 4%;
 }*/
 #clientListView{
-    display:none;
+    /*display:none;*/
 	width: 100%;
     height: auto;
     float: left;
-	display:none;
 	background-color: white;
 }
 .clientClientContainer{
@@ -829,7 +827,7 @@ td{
 #resetClientButton:hover{font-size:14px;background-color:#c9302c;border-color: #ac2925;width: 61.08px;height: 34px;padding: 0;color:white;}
 #updateFromData{font-size:14px;background-color:#337ab7;width: 61.08px;height: 34px;padding: 0;}
 #updateFromData:hover{font-size:14px;background-color:#005bab;border-color: #204d74;width: 61.08px;height: 34px;padding: 0;}
-.createPage{width:100%;height:auto;float:left;display:none;background-color: white;padding-bottom: 18px;}
+.createPage{width:100%;height:auto;float:left;background-color: white;padding-bottom: 18px;}
 .createPageHeader{width: 100%;height: auto;float: left;padding: 15px 4%;font-size: 25px;}
 .createPageTitleDiv{width: 100%;height: auto;float: left;padding: 0px 4%;}
 .createPageSlugDiv{width:100%;height:auto;float:left;padding: 0px 4% 11px;}

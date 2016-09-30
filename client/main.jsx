@@ -8,10 +8,6 @@ import ShowForms from './FormList.jsx';
  
 Meteor.startup(() => {
 	render(<FullPage />, document.getElementById('render-target'));
-	$.getScript('../../client/assets/demo.js', function(){
-             showFormData(" ");
-	});
-
 });
 
 

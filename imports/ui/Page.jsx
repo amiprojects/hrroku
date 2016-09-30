@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import { Forms } from '../api/collections.js';
+import { Forms,Clients } from '../api/collections.js';
 import { ShowForms } from '../../client/FormList.jsx';
+import { ShowClients } from '../../client/ClientList.jsx';
 
 var HeaderPart = React.createClass({
   render: function() {
@@ -39,7 +40,7 @@ class SideMenu extends Component {
 	}
 	
 	showCreatePage(){
-		alert("createPage open to create");
+		render(<CreatePage />,document.getElementById('innerBody'));		
 	}
 	
 	showPageList(){
@@ -51,11 +52,11 @@ class SideMenu extends Component {
 	}
 	
 	createClient(){
-		alert("client create page open");
+		render(<CreateClientPage />,document.getElementById('innerBody'));
 	}
 	
 	showClientList(){
-		alert("client list page open");
+		render(<ShowClients />,document.getElementById('innerBody'));
 	}
 	
 	
@@ -312,8 +313,28 @@ class FormSettings extends Component {
 	}
 }
 
-
-
+class CreatePage extends Component {
+	addForm(){
+		$("#createPage").append('<div className="createPageEditorDiv">Loading Forms....</div>');
+	}
+	render() {
+		return (<div className="createPage">
+						    <div className="createPageHeader">							    
+								      Create new page								
+							</div>
+							<div className="createPageTitleDiv">
+							    <div className="form-group">
+									<label>Add Title</label>
+									<input type="text" className="form-control" id="pageTitle"/>
+								</div>
+							</div>
+							<div className="createPageMetaInfo">
+									<div className="metaInfoBody"></div>
+							</div>
+						    <div className="createPageEditorDiv"><button className="btn btn-primary" onClick={this.addForm}>Add Form</button></div>							
+		</div>);
+	}
+}
 
 
 var PageLists = React.createClass({
@@ -322,7 +343,13 @@ var PageLists = React.createClass({
     return {data: []};
   },
   componentDidMount: function() {
-    $("#pageListId").dataTable({});	
+    $("#pageListId").dataTable({
+		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
+		, "sPaginationType": "bootstrap"
+		, "oLanguage": {
+			"sLengthMenu": "_MENU_ records per page"
+		}
+	});	
   },
   render: function() {
     return (
@@ -402,6 +429,107 @@ var PageLists = React.createClass({
   }
 
 }); 
+
+class CreateClientPage extends Component {
+	addNewClient(){
+		window.sessionStorage.setItem("companyName",$("#companyName").val());
+		window.sessionStorage.setItem("companyAddress",$("#companyAddress").val());
+		window.sessionStorage.setItem("companyDescription",$("#companyDescription").val());
+		window.sessionStorage.setItem("contactPersonName",$("#contactPersonName").val());
+		window.sessionStorage.setItem("contactPersonName",$("#contactPersonName").val());
+		window.sessionStorage.setItem("companyContact",$("#companyContact").val());
+		window.sessionStorage.setItem("companyEmail",$("#companyEmail").val());
+		window.sessionStorage.setItem("contactPersonMobile",$("#contactPersonMobile").val());
+		window.sessionStorage.setItem("companyWebsite",$("#companyWebsite").val());
+		Clients.insert({
+				  name :sessionStorage.getItem("companyName"),
+				  address :sessionStorage.getItem("companyAddress"),
+				  description : sessionStorage.getItem("companyDescription"),
+				  contactPersonName : sessionStorage.getItem("contactPersonName"),
+				  comapanyMobile : sessionStorage.getItem("companyContact"),
+				  comapanyEmail : sessionStorage.getItem("companyEmail"),
+				  creationDate : new Date(),
+				  isActive : true,
+				  contactPersonMobile : sessionStorage.getItem("contactPersonMobile"),
+				  companyWebsite :sessionStorage.getItem("companyWebsite")
+		});
+		alert("Data added successfully");
+		window.sessionStorage.setItem("companyName","");
+		window.sessionStorage.setItem("companyAddress","");
+		window.sessionStorage.setItem("companyDescription","");
+		window.sessionStorage.setItem("contactPersonName","");
+		window.sessionStorage.setItem("contactPersonName","");
+		window.sessionStorage.setItem("companyContact","");
+		window.sessionStorage.setItem("companyEmail","");
+		window.sessionStorage.setItem("contactPersonMobile","");
+		window.sessionStorage.setItem("companyWebsite","");
+	}
+	render() {
+		return (<div id="createNewClient">
+						    <div className="createClientInnerDiv">
+							    <div className="createClientMainGap"></div>
+							    <div className="createClientMainDiv">
+									<div className="clientTitle"><span className="clientTitlestyle">Create new client</span></div>
+									<div className="clientForm">
+										<div className="form-group">
+											<label>Company Name</label>
+											<input type="text" className="form-control" id="companyName" placeholder="Company Name"/>
+										</div>
+									</div>
+									<div className="clientForm1">
+										<div className="form-group">
+											<label>Company Contact Number</label>
+											<input type="text" className="form-control" id="companyContact" placeholder="Company Contact"/>
+										</div>
+									</div>
+									<div className="clientFormFull">
+										<div className="form-group">
+											<label>Company Address</label>
+											<textarea className="form-control" id="companyAddress" rows="3" placeholder="Company Address"></textarea>
+										</div>
+									</div>
+									<div className="clientFormFull">
+										<div className="form-group">
+											<label>Company Description</label>
+											<textarea className="form-control" id="companyDescription" rows="3" placeholder="Company Description"></textarea>
+										</div>
+									</div>
+									<div className="clientFormFull">
+										<div className="form-group">
+											<label>Client Website</label>
+											<input type="text" className="form-control" id="companyWebsite" placeholder="Company Email"/>
+										</div>
+									</div>
+									<div className="clientForm">
+										<div className="form-group">
+											<label>Company Email</label>
+											<input type="text" className="form-control" id="companyEmail" placeholder="Company Email"/>
+										</div>
+									</div>
+									<div className="clientForm1">
+										<div className="form-group">
+											<label>Contact Person Name</label>
+											<input type="text" className="form-control" id="contactPersonName" placeholder="Contact Person Name"/>
+										</div>
+									</div>
+									<div className="clientForm">
+										<div className="form-group">
+											<label>Contact Person Mobile</label>
+											<input type="text" className="form-control" id="contactPersonMobile" placeholder="Contact Person Mobile"/>
+										</div>
+									</div>							
+								</div>
+								<div className="createClientMainGap"></div>
+							</div>
+							<div className="addclientButtons">
+							    <button className="btn btn-primary" id="saveFromData" onClick={this.addNewClient}>Save</button>			
+							    <button className="btn btn-primary" id="backToPreview">Cancel</button>							    
+							</div>		
+							<div className="formSettingsSpace"></div>
+						</div>);
+	
+	}
+}
 
 
 
