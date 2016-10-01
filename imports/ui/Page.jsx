@@ -5,6 +5,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Forms,Clients } from '../api/collections.js';
 import { ShowForms } from '../../client/FormList.jsx';
 import { ShowClients } from '../../client/ClientList.jsx';
+import { FormListPopup } from '../../client/FormListPopup.jsx';
 
 var HeaderPart = React.createClass({
   render: function() {
@@ -57,6 +58,11 @@ class SideMenu extends Component {
 	
 	showClientList(){
 		render(<ShowClients />,document.getElementById('innerBody'));
+		table=$("#clientDatatable").DataTable();
+	}
+	showFormCondition(){
+	   	render(<FormCondition />,document.getElementById('innerBody'));
+	
 	}
 	
 	
@@ -92,7 +98,12 @@ class SideMenu extends Component {
 													 <li>
 														  <i className="fa fa-list-alt"></i>List
 													 </li>
-												 </a>										  
+												 </a>
+												<a className="optionColor" onClick={this.showFormCondition}>
+													 <li>
+														  <i className="fa fa-list-alt"></i>Conditional Form
+													 </li>
+												 </a>	
 											  </ul>
 											</li>										
 									 </ul>
@@ -315,27 +326,87 @@ class FormSettings extends Component {
 
 class CreatePage extends Component {
 	addForm(){
-		$("#createPage").append('<div className="createPageEditorDiv">Loading Forms....</div>');
+		var bpop;
+		bpop = $("#loadForms").bPopup();
+	    render(<PopUp />,document.getElementById('innerBody'));
 	}
 	render() {
-		return (<div className="createPage">
-						    <div className="createPageHeader">							    
-								      Create new page								
-							</div>
-							<div className="createPageTitleDiv">
-							    <div className="form-group">
-									<label>Add Title</label>
-									<input type="text" className="form-control" id="pageTitle"/>
+		return (<div id="createPage">
+					<div className="createClientInnerDiv">
+						<div className="createClientMainGap"></div>
+						<div className="createClientMainDiv">
+							<div className="clientTitle"><span className="clientTitlestyle">Create Page</span></div>
+							<div className="clientForm">
+								<div className="form-group">
+									<label>Choose Client</label>
+									<select className="form-control" id="clienttName">
+										<option>Client Name</option>
+									</select>
 								</div>
 							</div>
-							<div className="createPageMetaInfo">
-									<div className="metaInfoBody"></div>
+							<div className="clientForm1">
+								<div className="form-group">
+									<label>Choose Template</label>
+									<select className="form-control" id="templateName" onClick={this.addForm}>
+										<option>Select Template</option>
+									</select>
+								</div>
 							</div>
-						    <div className="createPageEditorDiv"><button className="btn btn-primary" onClick={this.addForm}>Add Form</button></div>							
-		</div>);
+							<div className="clientFormFull">
+								<div className="form-group">
+									<label>Title</label>
+									<input type="text" className="form-control" id="title" placeholder="Title"/>
+								</div>
+							</div>
+							<div className="clientFormFull">
+								<div className="form-group">
+									<label>Id</label>
+									<input type="text" className="form-control" id="title" placeholder="Id"/>
+								</div>
+							</div>
+							<div className="clientForm">
+								<div className="form-group">
+									<label>Meta Keyboard</label>
+									<input type="text" className="form-control" id="metaKey" placeholder="Meta Keyboard"/>
+								</div>
+							</div>
+							<div className="clientForm1">
+								<div className="form-group">
+									<label>Meta Description</label>
+									<input type="text" className="form-control" id="metaKey" placeholder="Meta Description"/>
+								</div>
+							</div>
+							<div className="clientForm">
+								<div className="form-group">
+									<label>Preview url</label>
+									<input type="text" className="form-control" id="previewUrl" placeholder="http://mydomain.com/page"/>
+								</div>
+							</div>
+							<div className="clientForm1">
+								<div className="form-group">
+									<label>Publish url</label>
+									<input type="text" className="form-control" id="publishUrl" placeholder="http://mydomain.com/page"/>
+								</div>
+							</div>
+							<div className="clientForm">
+								<div className="form-group">
+									<label>Status</label><br/>
+									<input type="radio"  name="status" id="draft"/> Draft 
+									<input type="radio"  name="status" id="publish"/> Publish 
+								</div>
+							</div>
+						</div>
+						<div className="createClientMainGap"></div>
+					</div>
+					<div className="addclientButtons">
+						<button className="btn btn-primary" id="saveFromData">Save</button>			
+						<button className="btn btn-primary" id="backToPreview">Cancel</button>							    
+					</div>		
+					<div className="formSettingsSpace"></div>
+				</div>
+		);
 	}
 }
-
 
 var PageLists = React.createClass({
 	
@@ -432,10 +503,31 @@ var PageLists = React.createClass({
 
 class CreateClientPage extends Component {
 	addNewClient(){
+		if(($("#companyName").val() == "") || ($("#companyAddress").val() == "") || ($("#companyDescription").val() == "") || ($("#contactPersonName").val() == "") || ($("#companyContact").val() == "") || ($("#companyEmail").val() == "") || ($("#contactPersonMobile").val() == "") || ($("#companyWebsite").val() == "")){
+				alert("All fields are mandatory.");
+		}else{
+			if(Clients.find({comapanyMobile: $("#companyContact").val() , name: $("#companyName").val()}).count()>1){
+				alert("This company already exists!");
+			}else{
+				Clients.update($("#companyId").val(), {
+				  $set: { 
+					name : $("#editCompanyName").val(),
+					address : $("#editCompanyAddress").val(),
+					description : $("#editCompanyDescription").val(),
+					contactPersonName : $("#editContactName").val(),
+					comapanyMobile : $("#editCompanyContact").val(),
+					comapanyEmail : $("#editCompanyEmail").val(),
+					contactPersonMobile : $("#editcontactPersonMobile").val()
+				  },
+				});
+				$("#editClientPopup").bPopup().close();
+			}
+		}
+		
+		
 		window.sessionStorage.setItem("companyName",$("#companyName").val());
 		window.sessionStorage.setItem("companyAddress",$("#companyAddress").val());
 		window.sessionStorage.setItem("companyDescription",$("#companyDescription").val());
-		window.sessionStorage.setItem("contactPersonName",$("#contactPersonName").val());
 		window.sessionStorage.setItem("contactPersonName",$("#contactPersonName").val());
 		window.sessionStorage.setItem("companyContact",$("#companyContact").val());
 		window.sessionStorage.setItem("companyEmail",$("#companyEmail").val());
@@ -453,7 +545,15 @@ class CreateClientPage extends Component {
 				  contactPersonMobile : sessionStorage.getItem("contactPersonMobile"),
 				  companyWebsite :sessionStorage.getItem("companyWebsite")
 		});
-		alert("Data added successfully");
+		alert("New client information added successfully");
+		$("#companyName").val("");
+		$("#companyAddress").val("");
+		$("#companyDescription").val("");
+		$("#contactPersonName").val("");
+		$("#companyContact").val("");
+		$("#companyEmail").val("");
+		$("#contactPersonMobile").val("");
+		$("#companyWebsite").val("");
 		window.sessionStorage.setItem("companyName","");
 		window.sessionStorage.setItem("companyAddress","");
 		window.sessionStorage.setItem("companyDescription","");
@@ -464,6 +564,18 @@ class CreateClientPage extends Component {
 		window.sessionStorage.setItem("contactPersonMobile","");
 		window.sessionStorage.setItem("companyWebsite","");
 	}
+	resetNewClientInfo(){
+		$("#companyName").val("");
+		$("#companyAddress").val("");
+		$("#companyDescription").val("");
+		$("#contactPersonName").val("");
+		$("#companyContact").val("");
+		$("#companyEmail").val("");
+		$("#contactPersonMobile").val("");
+		$("#companyWebsite").val("");
+		
+	}
+	
 	render() {
 		return (<div id="createNewClient">
 						    <div className="createClientInnerDiv">
@@ -497,7 +609,7 @@ class CreateClientPage extends Component {
 									<div className="clientFormFull">
 										<div className="form-group">
 											<label>Client Website</label>
-											<input type="text" className="form-control" id="companyWebsite" placeholder="Company Email"/>
+											<input type="text" className="form-control" id="companyWebsite" placeholder="Company Website"/>
 										</div>
 									</div>
 									<div className="clientForm">
@@ -523,7 +635,7 @@ class CreateClientPage extends Component {
 							</div>
 							<div className="addclientButtons">
 							    <button className="btn btn-primary" id="saveFromData" onClick={this.addNewClient}>Save</button>			
-							    <button className="btn btn-primary" id="backToPreview">Cancel</button>							    
+							    <button className="btn btn-primary" id="backToPreview" onClick={this.resetNewClientInfo}>Cancel</button>							    
 							</div>		
 							<div className="formSettingsSpace"></div>
 						</div>);
@@ -531,15 +643,152 @@ class CreateClientPage extends Component {
 	}
 }
 
+class Popup extends Component {
+	render() {
+		return(
+			<div id="loadForms">
+				<span id="close" className="button b-close"><span>X</span></span>
+				    <FormListPopup />
+			</div>
+		);
+	}
+}
 
 
+class FormCondition extends Component {
+
+  openConditionPopup(){
+      	render(<PopupCondition />,document.getElementById('innerBody'));		
+  }
+render() {
+		return(
+			<div className="formConditionDiv">
+						    <div className="formConditionMainDiv">
+								<div className="formConditionSideDiv">
+								    <button className=" customField icon-select ui-sortable-handle">Select</button>
+								    <button className="customField icon-radio-group ui-sortable-handle">Radio Group</button>
+								</div>
+								<div className="formConditionBodyDiv">
+								     <div className="form-elements"><div className="form-group required-wrap"><label for="required-frmb-0-fld-2">Required</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2"/></div><div className="form-group label-wrap"><label for="label-frmb-0-fld-2">Label</label> <input type="text" value="Radio Group" name="label" placeholder="Label" className="fld-label form-control" id="cnd-label-frmb-0-fld-2"/></div><div className="form-group description-wrap"><label for="description-frmb-0-fld-2">Help Text</label> <input type="text" value="" name="description" placeholder="" className="fld-description form-control" id="cnd-description-frmb-0-fld-2"/></div><div className="form-group className-wrap"><label for="className-frmb-0-fld-2">Class</label> <input type="text" value="radio-group" name="className" placeholder="space separated classes" className="fld-className form-control" id="cnd-className-frmb-0-fld-2"/></div><div className="form-group name-wrap"><label for="name-frmb-0-fld-2">Name</label> <input type="text" value="radio-group-1475308621487" name="name" placeholder="" className="fld-name form-control" id="cnd-name-frmb-0-fld-2"/></div><div className="form-group access-wrap"><label>Access</label><input type="checkbox" className="fld-enable-roles" name="enable-roles" value="" id="cnd-enable-roles-frmb-0-fld-2"/> <label for="enable-roles-frmb-0-fld-2" className="roles-label">Limit access to one or more of the following roles:</label><div className="available-roles"><input type="checkbox" name="roles[]" value="1" id="cnd-fld-frmb-0-fld-2-roles-1" className="roles-field"/><label for="fld-frmb-0-fld-2-roles-1">Administrator</label><br/></div></div><div className="form-group other-wrap"><label>Enable "Other"</label><input type="checkbox" className="fld-enable-other" name="enable-other" value="" id="cnd-enable-other-frmb-0-fld-2"/> <label for="enable-other-frmb-0-fld-2" className="other-label">Let users to enter an unlisted option</label></div><div className="form-group field-options"><label className="false-label">Options</label><div className="sortable-options-wrap"><ol className="sortable-options ui-sortable"><li className="ui-sortable-handle"><input type="radio" className="option-selected" value="true" name="radio-group-1475308621487" checked="true"/><input type="text" className="option-label" value="Option 1" name="radio-group-1475308621487" placeholder="Label"/><input type="text" className="option-value" value="option-1" name="radio-group-1475308621487" placeholder="Value"/><a className="remove btn" title="Remove Element">×</a><label for="required-frmb-0-fld-2">(Conditional)</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2" onClick={this.openConditionPopup}/></li><li className="ui-sortable-handle"><input type="radio" className="option-selected" value="false" name="radio-group-1475308621487"/><input type="text" className="option-label" value="Option 2" name="radio-group-1475308621487" placeholder="Label"/><input type="text" className="option-value" value="option-2" name="radio-group-1475308621487" placeholder="Value"/><a className="remove btn" title="Remove Element">×</a><label for="required-frmb-0-fld-2">(Conditional)</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2" onClick={this.openConditionPopup}/></li><li className="ui-sortable-handle"><input type="radio" className="option-selected" value="false" name="radio-group-1475308621487" /><input type="text" className="option-label" value="Option 3" name="radio-group-1475308621487" placeholder="Label"/><input type="text" className="option-value" value="option-3" name="radio-group-1475308621487" placeholder="Value"/><a className="remove btn" title="Remove Element">×</a><label for="required-frmb-0-fld-2">(Conditional)</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2" onClick={this.openConditionPopup}/></li></ol></div></div><a className="close-field">Close</a></div>
+							 
+								</div>
+							</div>
+						</div>
+		);
+	}
+}
+class PopupCondition1 extends Component {
+	showfields(){	
+	  if($(".selectType").val() == "radio"){
+		  render(<PopupCondition1 />,document.getElementById('innerBody'));	
+	  }else if($(".selectType").val() == "text"){
+		render(<PopupCondition2 />,document.getElementById('innerBody'));		  
+	  }else{
+		
+	  }
+	 		
+	}
+	render() {
+		return(
+			<div className="formConditionDiv">
+				 <div className="formConditionMainDiv">
+				    <div className="formConditionBodyDiv">
+					       <div className="clientForm">
+							<div className="form-group">
+								<label>Select Type</label>
+								<select type="text" className="form-control selectType" onChange={this.showfields}>
+								  <option value="radio">Radio</option>
+								  <option value="text">Text</option>
+								</select>
+							</div>
+						</div>
+						<div className="clientFormFull">
+							<div className="form-elements"><div className="form-group required-wrap"><label for="required-frmb-0-fld-2">Required</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2"/></div><div className="form-group label-wrap"><label for="label-frmb-0-fld-2">Label</label> <input type="text" value="Radio Group" name="label" placeholder="Label" className="fld-label form-control" id="cnd-label-frmb-0-fld-2"/></div><div className="form-group description-wrap"><label for="description-frmb-0-fld-2">Help Text</label> <input type="text" value="" name="description" placeholder="" className="fld-description form-control" id="cnd-description-frmb-0-fld-2"/></div><div className="form-group className-wrap"><label for="className-frmb-0-fld-2">Class</label> <input type="text" value="radio-group" name="className" placeholder="space separated classes" className="fld-className form-control" id="cnd-className-frmb-0-fld-2"/></div><div className="form-group name-wrap"><label for="name-frmb-0-fld-2">Name</label> <input type="text" value="radio-group-1475308621487" name="name" placeholder="" className="fld-name form-control" id="cnd-name-frmb-0-fld-2"/></div><div className="form-group access-wrap"><label>Access</label><input type="checkbox" className="fld-enable-roles" name="enable-roles" value="" id="cnd-enable-roles-frmb-0-fld-2"/> <label for="enable-roles-frmb-0-fld-2" className="roles-label">Limit access to one or more of the following roles:</label><div className="available-roles"><input type="checkbox" name="roles[]" value="1" id="cnd-fld-frmb-0-fld-2-roles-1" className="roles-field"/><label for="fld-frmb-0-fld-2-roles-1">Administrator</label><br/></div></div><div className="form-group other-wrap"><label>Enable "Other"</label><input type="checkbox" className="fld-enable-other" name="enable-other" value="" id="cnd-enable-other-frmb-0-fld-2"/> <label for="enable-other-frmb-0-fld-2" className="other-label">Let users to enter an unlisted option</label></div><div className="form-group field-options"><label className="false-label">Options</label><div className="sortable-options-wrap"><ol className="sortable-options ui-sortable"><li className="ui-sortable-handle"><input type="radio" className="option-selected" value="true" name="radio-group-1475308621487" checked="true"/><input type="text" className="option-label" value="Option 1" name="radio-group-1475308621487" placeholder="Label"/><input type="text" className="option-value" value="option-1" name="radio-group-1475308621487" placeholder="Value"/><a className="remove btn" title="Remove Element">×</a><label for="required-frmb-0-fld-2">(Conditional)</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2"/></li><li className="ui-sortable-handle"><input type="radio" className="option-selected" value="false" name="radio-group-1475308621487"/><input type="text" className="option-label" value="Option 2" name="radio-group-1475308621487" placeholder="Label"/><input type="text" className="option-value" value="option-2" name="radio-group-1475308621487" placeholder="Value"/><a className="remove btn" title="Remove Element">×</a><label for="required-frmb-0-fld-2">(Conditional)</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2"/></li><li className="ui-sortable-handle"><input type="radio" className="option-selected" value="false" name="radio-group-1475308621487"/><input type="text" className="option-label" value="Option 3" name="radio-group-1475308621487" placeholder="Label"/><input type="text" className="option-value" value="option-3" name="radio-group-1475308621487" placeholder="Value"/><a className="remove btn" title="Remove Element">×</a><label for="required-frmb-0-fld-2">(Conditional)</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2"/></li></ol></div></div><a className="close-field">Close</a></div>
+						</div>
+					</div>
+				 </div>
+			</div>
+		);
+	}
+}
+class PopupCondition2 extends Component {
+	showfields(){	
+	  if($(".selectType").val() == "radio"){
+	      
+		  render(<PopupCondition1 />,document.getElementById('innerBody'));	
+	  }else if($(".selectType").val() == "text"){
+		
+		render(<PopupCondition2 />,document.getElementById('innerBody'));		  
+	  }else{
+		alert("nothing");
+	  }
+	 		
+	}
+	render() {
+		return(
+			<div className="formConditionDiv">
+				 <div className="formConditionMainDiv">
+				    <div className="formConditionBodyDiv">
+					       <div className="clientForm">
+							<div className="form-group">
+								<label>Select Type</label>
+								<select type="text" className="form-control selectType" onChange={this.showfields}>
+								  <option value="radio">Radio</option>
+								  <option value="text" selected="selected">Text</option>
+								</select>
+							</div>
+						</div>
+						<div className="clientFormFull">
+							<div className="form-elements"><div className="form-group required-wrap"><label for="required-frmb-0-fld-2">Required</label><input type="checkbox" className="fld-required" name="required" value="true" id="cnd-required-frmb-0-fld-2"/></div><div className="form-group label-wrap"><label for="label-frmb-0-fld-2">Label</label> <input type="text" value="Text" name="label" placeholder="Label" className="fld-label form-control" id="cnd-label-frmb-0-fld-2"/></div><div className="form-group description-wrap"><label for="description-frmb-0-fld-2">Help Text</label> <input type="text" value="" name="description" placeholder="" className="fld-description form-control" id="cnd-description-frmb-0-fld-2"/></div><div className="form-group className-wrap"><label for="className-frmb-0-fld-2">Class</label> <input type="text" value="text" name="className" placeholder="space separated classes" className="fld-className form-control" id="cnd-className-frmb-0-fld-2"/></div><div className="form-group name-wrap"><label for="name-frmb-0-fld-2">Name</label> <input type="text" value="text-1475308621487" name="name" placeholder="" className="fld-name form-control" id="cnd-name-frmb-0-fld-2"/></div><a className="close-field">Close</a></div>
+						</div>
+					</div>
+				 </div>
+			</div>
+		);
+	}
+}
+class PopupCondition extends Component {
+    showfields(){	
+	  if($(".selectType").val() == "radio"){
+	      alert("radio");
+		  render(<PopupCondition1 />,document.getElementById('innerBody'));	
+	  }else if($(".selectType").val() == "text"){
+		alert("text");
+		render(<PopupCondition2 />,document.getElementById('innerBody'));		  
+	  }else{
+		alert("nothing");
+	  }
+	 		
+	}
+	render() {
+		return(
+			<div className="formConditionDiv">
+				 <div className="formConditionMainDiv">
+				    <div className="formConditionBodyDiv">
+					       <div className="clientForm">
+							<div className="form-group">
+								<label>Select Type</label>
+								<select type="text" className="form-control selectType" onChange={this.showfields}>
+								  <option value="">Select Type</option>
+								  <option value="radio">Radio</option>
+								  <option value="text">Text</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				 </div>
+			</div>
+		);
+	}
+}
 export default class FullPage extends Component {
 	
 
 	render() {
 		return (<div className="main">
 					<HeaderPart />
-					<BodyPart />
+					<BodyPart />					
+					<Popup />					
 				</div>
 		);
 	}

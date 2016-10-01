@@ -29,3 +29,6 @@ function showFormData(frmData){     //Initiating Form Builder
 	  };
 }
 /****************************************Form Builder Js End****************************************/
+$(document).ready(function(){
+	
+});
