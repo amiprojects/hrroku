@@ -2,13 +2,13 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
  
-//import App from '../imports/ui/App.jsx';
-import FullPage from '../imports/ui/Page.jsx';
-import ShowForms from './FormList.jsx';
+
+import Login from '../imports/ui/Login.jsx';
+import ForgotPassword from '../imports/ui/ForgotPassword.jsx';
+
  
 Meteor.startup(() => {
-	render(<FullPage />, document.getElementById('render-target'));
+  render(<ForgotPassword />, document.getElementById('render-target'));
+  render(<Login />, document.getElementById('render-target'));
+  
 });
-
-
-
