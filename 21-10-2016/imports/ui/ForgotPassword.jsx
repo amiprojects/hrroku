@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
- 
 
-// App component - represents the whole app
+
+
 export default class ForgotPassword extends Component {
+
+
  
   render() {
     return (
-        <body>
-                   <div className="hed_top">
+        <body id='ok'>
+
+          <div className="hed_top">
             <div className="mid_container">
               <div className="logoin"><img src="images/logo.jpg" /></div>
             </div>
@@ -36,7 +39,9 @@ export default class ForgotPassword extends Component {
                 </form>
               </div>
             </div>
-           </div>       
+           </div>
+          
+          
         </body>
               
 

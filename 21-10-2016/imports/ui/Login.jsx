@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
+
+import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
  
 
-// App component - represents the whole app
+
 export default class Login extends Component {
 
-switch_to_frgt_pwd(){
-  FlowRouter.go('ForgotPassword.jsx');
-}
- 
+
+
+
+
   render() {
     return (
         <body>
         <div className="hed_top">
         
         <div className="mid_container">
-        <div className="logoin">Appitude</div>
+        <div className="logoin">Aptitude</div>
         </div>
         </div>
               <div className="mid_content">
@@ -37,7 +39,7 @@ switch_to_frgt_pwd(){
                       <div className="button-container">
                         <button><span>submit</span></button>
                       </div>
-                      <div className="sign"><a href="#">New Registration</a>  <a href="/ForgotPassword">Forget Password</a></div>
+                      <div className="sign"><a href="#">New Registration</a>  <a onClick={this.switch_to_frgt_pwd}>Forget Password</a></div>
                     </form>
                   </div>
                 </div>
