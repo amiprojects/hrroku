@@ -13,12 +13,9 @@ import Dashboard from '../imports/ui/Dashboard.jsx';
 
  
 Meteor.startup(() => {
-	
+	render(<Registration />, document.getElementById('render-target'));
     render(<Dashboard />, document.getElementById('render-target')); 
 	render(<Login />, document.getElementById('render-target')); 
  	render(<Registration />, document.getElementById('render-target'));	
-  	render(<ForgotPassword />, document.getElementById('render-target')); 
-  	
-  	
-  
+  	render(<ForgotPassword />, document.getElementById('render-target'));  	
 });

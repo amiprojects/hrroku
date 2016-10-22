@@ -133,6 +133,8 @@ install("blaze-html-templates");
 install("standard-minifier-css");
 install("standard-minifier-js");
 install("shell-server", "meteor/shell-server/main.js");
+install("reactive-dict");
+install("kadira:flow-router");
 install("livedata");
 install("hot-code-push");
 install("launch-screen");

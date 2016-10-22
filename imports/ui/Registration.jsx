@@ -1,12 +1,34 @@
 import React, { Component } from 'react';
- 
+
+
 
 // App component - represents the whole app
 export default class Registration extends Component {
 
- 
+
  user_registration(){
-     alert("hi...");
+    
+    //db.User.remove();
+
+    var user_id;
+    if(User.find().count()==0){
+        user_id=1;        
+    }
+    else{
+        user_id=User.find().count()+1;        
+    }
+
+    
+    
+    var sex; 
+    if (document.getElementById('male').checked) {
+        sex = document.getElementById('male').value;
+    }
+    else if(document.getElementById('female').checked){
+        sex = document.getElementById('female').value;
+    }
+
+     
      var uname=$("#uname").val();
      var fname=$("#fname").val();
      var lname=$("#lname").val();
@@ -20,27 +42,30 @@ export default class Registration extends Component {
 
      
      User.insert({
-      id:1,
+      user_id:user_id,
       role_id:"",
       userName: uname,
       password: pwd,
       firstName: fname, 
       lastName: lname,
-      birth: dob,
+      date_of_birth: dob,
+      sex:sex,
       email: mail,
       mobile: mob,
       address: addr,
-      is_active:0,
-      registraion_accepted_by:0;
-      created_by=1;
+      is_active:"0",
+      registraion_accepted_by:"0",
+      created_by:"1",
       created_date_time:new Date(),
       last_modified_date_time:new Date(),
-      last_modified_by:1,
-      question: squestion,
-      answer: sanswer,      
+      last_modified_by:"1",
+      security_question: squestion,
+      security_answer: sanswer     
     });
 
- }
+    alert("Registration success...");
+    }
+    
 
 
   render() {
@@ -95,16 +120,16 @@ export default class Registration extends Component {
             </div>
             <div className="col-md-6">
               <div className="input-container">
-                <input type="text"  required="required" placeholder="dd/mm/yyyy" id="dob"/>
+                <input type="text"  required="required" placeholder="" id="dob"/>
                 <label for=" ">Date Of Birth</label>
               <div className="bar"></div>
             </div>
             <div className="input-container gender">
                 <div> Gender</div>
                 <span>
-                <input type="radio" id="male"/>
+                <input type="radio" name="m" id="male"/>
                 Male</span> <span>
-                <input type="radio" id="female"/>
+                <input type="radio" name="m" id="female"/>
                 Female </span></div>
             <div className="input-container">
                 <input type="num" required="required" id="mob"/>

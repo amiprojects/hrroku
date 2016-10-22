@@ -57,11 +57,11 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/packages/modules.js?hash=221739eafccf0b2a37761851a133ce300edb4013",
+      "url": "/packages/modules.js?hash=046c73f11f621e979c58e39bdce9766a1e4e4bc5",
       "sourceMap": "packages/modules.js.map",
-      "sourceMapUrl": "/packages/221739eafccf0b2a37761851a133ce300edb4013.map",
-      "size": 2825824,
-      "hash": "221739eafccf0b2a37761851a133ce300edb4013"
+      "sourceMapUrl": "/packages/046c73f11f621e979c58e39bdce9766a1e4e4bc5.map",
+      "size": 2826074,
+      "hash": "046c73f11f621e979c58e39bdce9766a1e4e4bc5"
     },
     {
       "path": "packages/es5-shim.js",
@@ -407,6 +407,28 @@
       "hash": "f03a836045cdd3bfea9a64689929cfdd6d14b9be"
     },
     {
+      "path": "packages/reactive-dict.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/reactive-dict.js?hash=2d818560f104189acfa57205ecf42df8a80ab6a7",
+      "sourceMap": "packages/reactive-dict.js.map",
+      "sourceMapUrl": "/packages/2d818560f104189acfa57205ecf42df8a80ab6a7.map",
+      "size": 40545,
+      "hash": "2d818560f104189acfa57205ecf42df8a80ab6a7"
+    },
+    {
+      "path": "packages/kadira_flow-router.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/kadira_flow-router.js?hash=09ea12875d3801955ee70797bf8e4a70feebc570",
+      "sourceMap": "packages/kadira_flow-router.js.map",
+      "sourceMapUrl": "/packages/09ea12875d3801955ee70797bf8e4a70feebc570.map",
+      "size": 328976,
+      "hash": "09ea12875d3801955ee70797bf8e4a70feebc570"
+    },
+    {
       "path": "packages/webapp.js",
       "where": "client",
       "type": "js",
@@ -553,20 +575,20 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/packages/global-imports.js?hash=aaa62ac5f48eb52eb3184f1f31069743173844a2",
-      "size": 1101,
-      "hash": "aaa62ac5f48eb52eb3184f1f31069743173844a2"
+      "url": "/packages/global-imports.js?hash=ba8b1205a42cc1c77059830af8d201f276003537",
+      "size": 1156,
+      "hash": "ba8b1205a42cc1c77059830af8d201f276003537"
     },
     {
       "path": "app/app.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/app/app.js?hash=3d9c76b64bb7e27a8add3ad7cab138d67272745a",
+      "url": "/app/app.js?hash=4b0380896ee3b6abf546996e6574bae7c08450e8",
       "sourceMap": "app/app.js.map",
-      "sourceMapUrl": "/app/3d9c76b64bb7e27a8add3ad7cab138d67272745a.map",
-      "size": 76902,
-      "hash": "3d9c76b64bb7e27a8add3ad7cab138d67272745a"
+      "sourceMapUrl": "/app/4b0380896ee3b6abf546996e6574bae7c08450e8.map",
+      "size": 113383,
+      "hash": "4b0380896ee3b6abf546996e6574bae7c08450e8"
     },
     {
       "path": "merged-stylesheets.css",

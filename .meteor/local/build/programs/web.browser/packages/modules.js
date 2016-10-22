@@ -162,21 +162,23 @@ install("standard-minifier-css");                                               
 install("standard-minifier-js");                                                                                       // 68
 install("shell-server");                                                                                               // 69
 install("autopublish");                                                                                                // 70
-install("webapp");                                                                                                     // 71
-install("livedata");                                                                                                   // 72
-install("hot-code-push");                                                                                              // 73
-install("observe-sequence");                                                                                           // 74
-install("deps");                                                                                                       // 75
-install("htmljs");                                                                                                     // 76
-install("blaze");                                                                                                      // 77
-install("spacebars");                                                                                                  // 78
-install("templating-compiler");                                                                                        // 79
-install("templating-runtime");                                                                                         // 80
-install("templating");                                                                                                 // 81
-install("launch-screen");                                                                                              // 82
-install("ui");                                                                                                         // 83
-install("autoupdate");                                                                                                 // 84
-                                                                                                                       // 85
+install("reactive-dict");                                                                                              // 71
+install("kadira:flow-router");                                                                                         // 72
+install("webapp");                                                                                                     // 73
+install("livedata");                                                                                                   // 74
+install("hot-code-push");                                                                                              // 75
+install("observe-sequence");                                                                                           // 76
+install("deps");                                                                                                       // 77
+install("htmljs");                                                                                                     // 78
+install("blaze");                                                                                                      // 79
+install("spacebars");                                                                                                  // 80
+install("templating-compiler");                                                                                        // 81
+install("templating-runtime");                                                                                         // 82
+install("templating");                                                                                                 // 83
+install("launch-screen");                                                                                              // 84
+install("ui");                                                                                                         // 85
+install("autoupdate");                                                                                                 // 86
+                                                                                                                       // 87
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"process.js":["process",function(require,exports,module){

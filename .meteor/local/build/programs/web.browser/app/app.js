@@ -44,12 +44,12 @@ var React;module.import('react',{"default":function(v){React=v}});var Meteor;mod
                                                                                                                       // 8
                                                                                                                       //
 Meteor.startup(function () {                                                                                          // 15
-                                                                                                                      //
+  render(React.createElement(Registration, null), document.getElementById('render-target'));                          // 16
   render(React.createElement(Dashboard, null), document.getElementById('render-target'));                             // 17
   render(React.createElement(Login, null), document.getElementById('render-target'));                                 // 18
   render(React.createElement(Registration, null), document.getElementById('render-target'));                          // 19
   render(React.createElement(ForgotPassword, null), document.getElementById('render-target'));                        // 20
-});                                                                                                                   // 24
+});                                                                                                                   // 21
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }]},"imports":{"ui":{"Dashboard.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react",function(require,exports,module){
@@ -566,7 +566,7 @@ var Login = function (_Component) {                                             
 module.export("default",exports.default=(Login));                                                                     //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}],"Registration.jsx":function(){
+}],"Registration.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react",function(require,exports,module){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
@@ -574,11 +574,294 @@ module.export("default",exports.default=(Login));                               
 //                                                                                                                    //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                       //
-throw new Error("Unexpected token (34:31)");                                                                          // 1
-                                                                                                                      // 2
+var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});
+                                                                                                                      //
+                                                                                                                      //
+                                                                                                                      // 1
+                                                                                                                      //
+// App component - represents the whole app                                                                           //
+                                                                                                                      //
+var Registration = function (_Component) {                                                                            //
+  _inherits(Registration, _Component);                                                                                //
+                                                                                                                      //
+  function Registration() {                                                                                           //
+    _classCallCheck(this, Registration);                                                                              //
+                                                                                                                      //
+    return _possibleConstructorReturn(this, _Component.apply(this, arguments));                                       //
+  }                                                                                                                   //
+                                                                                                                      //
+  Registration.prototype.user_registration = function () {                                                            //
+    function user_registration() {                                                                                    //
+                                                                                                                      //
+      //db.User.remove();                                                                                             //
+                                                                                                                      //
+      var user_id;                                                                                                    // 13
+      if (User.find().count() == 0) {                                                                                 // 14
+        user_id = 1;                                                                                                  // 15
+      } else {                                                                                                        // 16
+        user_id = User.find().count() + 1;                                                                            // 18
+      }                                                                                                               // 19
+                                                                                                                      //
+      var sex;                                                                                                        // 23
+      if (document.getElementById('male').checked) {                                                                  // 24
+        sex = document.getElementById('male').value;                                                                  // 25
+      } else if (document.getElementById('female').checked) {                                                         // 26
+        sex = document.getElementById('female').value;                                                                // 28
+      }                                                                                                               // 29
+                                                                                                                      //
+      var uname = $("#uname").val();                                                                                  // 32
+      var fname = $("#fname").val();                                                                                  // 33
+      var lname = $("#lname").val();                                                                                  // 34
+      var mail = $("#mail").val();                                                                                    // 35
+      var pwd = $("#pwd").val();                                                                                      // 36
+      var addr = $("#addr").val();                                                                                    // 37
+      var dob = $("#dob").val();                                                                                      // 38
+      var mob = $("#mob").val();                                                                                      // 39
+      var squestion = $("#squestion").val();                                                                          // 40
+      var sanswer = $("#sanswer").val();                                                                              // 41
+                                                                                                                      //
+      User.insert({                                                                                                   // 44
+        user_id: user_id,                                                                                             // 45
+        role_id: "",                                                                                                  // 46
+        userName: uname,                                                                                              // 47
+        password: pwd,                                                                                                // 48
+        firstName: fname,                                                                                             // 49
+        lastName: lname,                                                                                              // 50
+        date_of_birth: dob,                                                                                           // 51
+        sex: sex,                                                                                                     // 52
+        email: mail,                                                                                                  // 53
+        mobile: mob,                                                                                                  // 54
+        address: addr,                                                                                                // 55
+        is_active: "0",                                                                                               // 56
+        registraion_accepted_by: "0",                                                                                 // 57
+        created_by: "1",                                                                                              // 58
+        created_date_time: new Date(),                                                                                // 59
+        last_modified_date_time: new Date(),                                                                          // 60
+        last_modified_by: "1",                                                                                        // 61
+        security_question: squestion,                                                                                 // 62
+        security_answer: sanswer                                                                                      // 63
+      });                                                                                                             // 44
+                                                                                                                      //
+      alert("Registration success...");                                                                               // 66
+    }                                                                                                                 // 67
+                                                                                                                      //
+    return user_registration;                                                                                         //
+  }();                                                                                                                //
+                                                                                                                      //
+  Registration.prototype.render = function () {                                                                       //
+    function render() {                                                                                               //
+      return React.createElement(                                                                                     // 72
+        'body',                                                                                                       // 73
+        null,                                                                                                         // 73
+        React.createElement(                                                                                          // 74
+          'div',                                                                                                      // 74
+          { className: 'hed_top' },                                                                                   // 74
+          React.createElement(                                                                                        // 76
+            'div',                                                                                                    // 76
+            { className: 'mid_container' },                                                                           // 76
+            React.createElement(                                                                                      // 77
+              'div',                                                                                                  // 77
+              { className: 'logoin' },                                                                                // 77
+              'Appitude'                                                                                              // 77
+            )                                                                                                         // 77
+          )                                                                                                           // 76
+        ),                                                                                                            // 74
+        React.createElement(                                                                                          // 80
+          'div',                                                                                                      // 80
+          { className: 'mid_content registration_form' },                                                             // 80
+          React.createElement(                                                                                        // 81
+            'div',                                                                                                    // 81
+            { className: 'container' },                                                                               // 81
+            React.createElement(                                                                                      // 82
+              'div',                                                                                                  // 82
+              { className: 'col-md-6 col-md-offset-3' },                                                              // 82
+              React.createElement('div', { className: 'card' }),                                                      // 83
+              React.createElement(                                                                                    // 84
+                'div',                                                                                                // 84
+                { className: 'card' },                                                                                // 84
+                React.createElement(                                                                                  // 85
+                  'h1',                                                                                               // 85
+                  { className: 'title' },                                                                             // 85
+                  'Registration'                                                                                      // 85
+                ),                                                                                                    // 85
+                React.createElement(                                                                                  // 86
+                  'form',                                                                                             // 86
+                  { className: 'form_pad' },                                                                          // 86
+                  React.createElement(                                                                                // 87
+                    'div',                                                                                            // 87
+                    { className: 'row' },                                                                             // 87
+                    React.createElement(                                                                              // 88
+                      'div',                                                                                          // 88
+                      { className: 'col-md-6' },                                                                      // 88
+                      React.createElement(                                                                            // 89
+                        'div',                                                                                        // 89
+                        { className: 'input-container' },                                                             // 89
+                        React.createElement('input', { type: 'text', required: 'required', id: 'uname' }),            // 90
+                        React.createElement(                                                                          // 91
+                          'label',                                                                                    // 91
+                          { 'for': '' },                                                                              // 91
+                          'User Name'                                                                                 // 91
+                        ),                                                                                            // 91
+                        React.createElement('div', { className: 'bar' })                                              // 92
+                      ),                                                                                              // 89
+                      React.createElement(                                                                            // 94
+                        'div',                                                                                        // 94
+                        { className: 'input-container' },                                                             // 94
+                        React.createElement('input', { type: 'text', required: 'required', id: 'fname' }),            // 95
+                        React.createElement(                                                                          // 96
+                          'label',                                                                                    // 96
+                          { 'for': ' ' },                                                                             // 96
+                          'First Name'                                                                                // 96
+                        ),                                                                                            // 96
+                        React.createElement('div', { className: 'bar' })                                              // 97
+                      ),                                                                                              // 94
+                      React.createElement(                                                                            // 99
+                        'div',                                                                                        // 99
+                        { className: 'input-container' },                                                             // 99
+                        React.createElement('input', { type: 'text', required: 'required', id: 'lname' }),            // 100
+                        React.createElement(                                                                          // 101
+                          'label',                                                                                    // 101
+                          { 'for': ' ' },                                                                             // 101
+                          'Last Name'                                                                                 // 101
+                        ),                                                                                            // 101
+                        React.createElement('div', { className: 'bar' })                                              // 102
+                      ),                                                                                              // 99
+                      React.createElement(                                                                            // 104
+                        'div',                                                                                        // 104
+                        { className: 'input-container' },                                                             // 104
+                        React.createElement('input', { type: 'text', required: 'required', id: 'mail' }),             // 105
+                        React.createElement(                                                                          // 106
+                          'label',                                                                                    // 106
+                          { 'for': ' ' },                                                                             // 106
+                          'Email Id'                                                                                  // 106
+                        ),                                                                                            // 106
+                        React.createElement('div', { className: 'bar' })                                              // 107
+                      ),                                                                                              // 104
+                      React.createElement(                                                                            // 109
+                        'div',                                                                                        // 109
+                        { className: 'input-container' },                                                             // 109
+                        React.createElement('input', { type: 'password', required: 'required', id: 'pwd' }),          // 110
+                        React.createElement(                                                                          // 111
+                          'label',                                                                                    // 111
+                          { 'for': ' ' },                                                                             // 111
+                          'Password'                                                                                  // 111
+                        ),                                                                                            // 111
+                        React.createElement('div', { className: 'bar' })                                              // 112
+                      ),                                                                                              // 109
+                      React.createElement(                                                                            // 114
+                        'div',                                                                                        // 114
+                        { className: 'input-container' },                                                             // 114
+                        React.createElement('input', { type: 'text', required: 'required', id: 'addr' }),             // 115
+                        React.createElement(                                                                          // 116
+                          'label',                                                                                    // 116
+                          { 'for': ' ' },                                                                             // 116
+                          'Parmanent Address'                                                                         // 116
+                        ),                                                                                            // 116
+                        React.createElement('div', { className: 'bar' })                                              // 117
+                      )                                                                                               // 114
+                    ),                                                                                                // 88
+                    React.createElement(                                                                              // 121
+                      'div',                                                                                          // 121
+                      { className: 'col-md-6' },                                                                      // 121
+                      React.createElement(                                                                            // 122
+                        'div',                                                                                        // 122
+                        { className: 'input-container' },                                                             // 122
+                        React.createElement('input', { type: 'text', required: 'required', placeholder: '', id: 'dob' }),
+                        React.createElement(                                                                          // 124
+                          'label',                                                                                    // 124
+                          { 'for': ' ' },                                                                             // 124
+                          'Date Of Birth'                                                                             // 124
+                        ),                                                                                            // 124
+                        React.createElement('div', { className: 'bar' })                                              // 125
+                      ),                                                                                              // 122
+                      React.createElement(                                                                            // 127
+                        'div',                                                                                        // 127
+                        { className: 'input-container gender' },                                                      // 127
+                        React.createElement(                                                                          // 128
+                          'div',                                                                                      // 128
+                          null,                                                                                       // 128
+                          ' Gender'                                                                                   // 128
+                        ),                                                                                            // 128
+                        React.createElement(                                                                          // 129
+                          'span',                                                                                     // 129
+                          null,                                                                                       // 129
+                          React.createElement('input', { type: 'radio', name: 'm', id: 'male' }),                     // 130
+                          'Male'                                                                                      // 129
+                        ),                                                                                            // 129
+                        ' ',                                                                                          // 127
+                        React.createElement(                                                                          // 131
+                          'span',                                                                                     // 131
+                          null,                                                                                       // 131
+                          React.createElement('input', { type: 'radio', name: 'm', id: 'female' }),                   // 132
+                          'Female '                                                                                   // 131
+                        )                                                                                             // 131
+                      ),                                                                                              // 127
+                      React.createElement(                                                                            // 134
+                        'div',                                                                                        // 134
+                        { className: 'input-container' },                                                             // 134
+                        React.createElement('input', { type: 'num', required: 'required', id: 'mob' }),               // 135
+                        React.createElement(                                                                          // 136
+                          'label',                                                                                    // 136
+                          { 'for': ' ' },                                                                             // 136
+                          'Phone No'                                                                                  // 136
+                        ),                                                                                            // 136
+                        React.createElement('div', { className: 'bar' })                                              // 137
+                      ),                                                                                              // 134
+                      React.createElement(                                                                            // 139
+                        'div',                                                                                        // 139
+                        { className: 'input-container' },                                                             // 139
+                        React.createElement('input', { type: 'text', required: 'required', id: 'squestion' }),        // 140
+                        React.createElement(                                                                          // 141
+                          'label',                                                                                    // 141
+                          { 'for': ' ' },                                                                             // 141
+                          'Security Question'                                                                         // 141
+                        ),                                                                                            // 141
+                        React.createElement('div', { className: 'bar' })                                              // 142
+                      ),                                                                                              // 139
+                      React.createElement(                                                                            // 144
+                        'div',                                                                                        // 144
+                        { className: 'input-container' },                                                             // 144
+                        React.createElement('input', { type: 'text', required: 'required', id: 'sanswer' }),          // 145
+                        React.createElement(                                                                          // 146
+                          'label',                                                                                    // 146
+                          { 'for': ' ' },                                                                             // 146
+                          'Security Answer'                                                                           // 146
+                        ),                                                                                            // 146
+                        React.createElement('div', { className: 'bar' })                                              // 147
+                      )                                                                                               // 144
+                    )                                                                                                 // 121
+                  ),                                                                                                  // 87
+                  React.createElement(                                                                                // 153
+                    'div',                                                                                            // 153
+                    { className: 'button-container' },                                                                // 153
+                    React.createElement(                                                                              // 154
+                      'button',                                                                                       // 154
+                      { onClick: this.user_registration },                                                            // 154
+                      React.createElement(                                                                            // 154
+                        'span',                                                                                       // 154
+                        null,                                                                                         // 154
+                        'SAVE'                                                                                        // 154
+                      )                                                                                               // 154
+                    )                                                                                                 // 154
+                  )                                                                                                   // 153
+                )                                                                                                     // 86
+              )                                                                                                       // 84
+            )                                                                                                         // 82
+          )                                                                                                           // 81
+        )                                                                                                             // 80
+      );                                                                                                              // 73
+    }                                                                                                                 // 166
+                                                                                                                      //
+    return render;                                                                                                    //
+  }();                                                                                                                //
+                                                                                                                      //
+  return Registration;                                                                                                //
+}(Component);                                                                                                         //
+                                                                                                                      //
+module.export("default",exports.default=(Registration));                                                              //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}}},"collections":{"init.js":function(){
+}]}},"collections":{"init.js":function(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
@@ -620,11 +903,18 @@ User.allow({                                                                    
 		}                                                                                                                   // 20
                                                                                                                       //
 		return update;                                                                                                      // 18
-	}()                                                                                                                  // 18
+	}(),                                                                                                                 // 18
+	remove: function () {                                                                                                // 21
+		function remove(userId, doc) {                                                                                      // 21
+			return true;                                                                                                       // 22
+		}                                                                                                                   // 23
+                                                                                                                      //
+		return remove;                                                                                                      // 21
+	}()                                                                                                                  // 21
 });                                                                                                                   // 14
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}}},{"extensions":[".js",".json",".html",".jsx",".css"]});
+}}},{"extensions":[".js",".json",".html",".css",".jsx"]});
 require("./client/template.main.js");
 require("./client/js/regiatration.js");
 require("./collections/init.js");

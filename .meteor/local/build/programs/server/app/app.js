@@ -24,7 +24,10 @@ User.allow({                                                                // 1
 	},                                                                         // 17
 	update: function update(userId, doc) {                                     // 18
 		return true;                                                              // 19
-	}                                                                          // 20
+	},                                                                         // 20
+	remove: function remove(userId, doc) {                                     // 21
+		return true;                                                              // 22
+	}                                                                          // 23
 });                                                                         // 14
 //////////////////////////////////////////////////////////////////////////////
 
