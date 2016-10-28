@@ -1,21 +1,56 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
- 
-import Login from '../imports/ui/Login.jsx';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { mount } from 'react-mounter';
+
 import Registration from '../imports/ui/Registration.jsx';
+import AddClient from '../imports/ui/AddClient.jsx';
+import Login from '../imports/ui/Login.jsx';
+import ManageUser from '../imports/ui/ManageUser.jsx';
+import ManageClient from '../imports/ui/ManageClient.jsx';
 import ForgotPassword from '../imports/ui/ForgotPassword.jsx';
-import Dashboard from '../imports/ui/Dashboard.jsx';
 
+var PageComponent = ({name}) => (<body>{name}</body>);
 
+FlowRouter.route('/', {
+  name: 'Login',
+  action(params) {
+    mount(PageComponent, {name: <Login />});
+  },
+});
 
+FlowRouter.route('/ManageClient', {
+  name: 'ManageClient',
+  action(params) {
+    mount(PageComponent, {name: <ManageClient />});
+  },
+});
 
+FlowRouter.route('/ManageUser', {
+  name: 'ManageUser',
+  action(params) {
+    mount(PageComponent, {name: <ManageUser />});
+  },
+});
 
- 
-Meteor.startup(() => {
-	render(<Registration />, document.getElementById('render-target'));
-    render(<Dashboard />, document.getElementById('render-target')); 
-	render(<Login />, document.getElementById('render-target')); 
- 	render(<Registration />, document.getElementById('render-target'));	
-  	render(<ForgotPassword />, document.getElementById('render-target'));  	
+FlowRouter.route('/AddClient', {
+  name: 'AddClient',
+  action(params) {
+    mount(PageComponent, {name: <AddClient />});
+  },
+});
+
+FlowRouter.route('/Registration', {
+  name: 'Registration',
+  action(params) {
+    mount(PageComponent, {name: <Registration />});
+  },
+});
+
+FlowRouter.route('/ForgotPassword', {
+  name: 'ForgotPassword',
+  action(params) {
+    mount(PageComponent, {name: <ForgotPassword />});
+  },
 });

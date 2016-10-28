@@ -57,11 +57,11 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/packages/modules.js?hash=046c73f11f621e979c58e39bdce9766a1e4e4bc5",
+      "url": "/packages/modules.js?hash=5f7bcec43341c201483140d3bbdf563707287163",
       "sourceMap": "packages/modules.js.map",
-      "sourceMapUrl": "/packages/046c73f11f621e979c58e39bdce9766a1e4e4bc5.map",
-      "size": 2826074,
-      "hash": "046c73f11f621e979c58e39bdce9766a1e4e4bc5"
+      "sourceMapUrl": "/packages/5f7bcec43341c201483140d3bbdf563707287163.map",
+      "size": 3127245,
+      "hash": "5f7bcec43341c201483140d3bbdf563707287163"
     },
     {
       "path": "packages/es5-shim.js",
@@ -584,22 +584,22 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/app/app.js?hash=4b0380896ee3b6abf546996e6574bae7c08450e8",
+      "url": "/app/app.js?hash=cb5f1d14674113fa6107a81ecf640237dc1b234e",
       "sourceMap": "app/app.js.map",
-      "sourceMapUrl": "/app/4b0380896ee3b6abf546996e6574bae7c08450e8.map",
-      "size": 113383,
-      "hash": "4b0380896ee3b6abf546996e6574bae7c08450e8"
+      "sourceMapUrl": "/app/cb5f1d14674113fa6107a81ecf640237dc1b234e.map",
+      "size": 268688,
+      "hash": "cb5f1d14674113fa6107a81ecf640237dc1b234e"
     },
     {
       "path": "merged-stylesheets.css",
       "where": "client",
       "type": "css",
       "cacheable": true,
-      "url": "/merged-stylesheets.css?hash=015e1fb95c400e75e627c8500f8c76a3862ebe8d",
+      "url": "/merged-stylesheets.css?hash=16bcf8c3b900932e4f9ec31a72c32f7dee5fbaaf",
       "sourceMap": "merged-stylesheets.css.map",
-      "sourceMapUrl": "/015e1fb95c400e75e627c8500f8c76a3862ebe8d.map",
-      "size": 304896,
-      "hash": "015e1fb95c400e75e627c8500f8c76a3862ebe8d"
+      "sourceMapUrl": "/16bcf8c3b900932e4f9ec31a72c32f7dee5fbaaf.map",
+      "size": 305304,
+      "hash": "16bcf8c3b900932e4f9ec31a72c32f7dee5fbaaf"
     },
     {
       "path": "app/images/close.png",

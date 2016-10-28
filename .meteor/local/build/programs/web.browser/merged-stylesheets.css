@@ -19309,3 +19309,31 @@ h1.title {
     margin: 0 auto 20px;
   }
 }
+
+#error-div {
+  display: none;
+  color: red;
+  padding-left: 30px;
+  padding-bottom: 17px;
+}
+
+#error-div-mail {
+  display: none;
+  color: red;
+  padding-left: 30px;
+  padding-bottom: 17px;
+}
+
+#error-div-no-uname-exists {
+  display: none;
+  color: red;
+  padding-left: 30px;
+  padding-bottom: 17px;
+}
+
+#error-div-incorrect-pass {
+  display: none;
+  color: red;
+  padding-left: 30px;
+  padding-bottom: 17px;
+}
