@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 export default class Login extends Component {
 
 loginTo(){
-  var uname=$("#Username").val();
+  /*var uname=$("#Username").val();
   var pass=$("#Password").val();
 
 
@@ -26,7 +26,9 @@ loginTo(){
         }
       });
       FlowRouter.go('/ManageClient');
-  }
+  }*/
+
+  FlowRouter.go('/ManageClient');
 
 }
 
